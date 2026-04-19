@@ -1,0 +1,371 @@
+:root {
+  font-family: Inter, Pretendard, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #111827;
+  background: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.app-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 32px;
+}
+
+.app-header p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.nav-pills {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: #e5e7eb;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-pill.active {
+  background: #111827;
+  color: white;
+}
+
+.health-card,
+.panel,
+.metric-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+  padding: 18px;
+}
+
+.health-card {
+  min-width: 320px;
+}
+
+.health-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.panel {
+  margin-bottom: 18px;
+}
+
+.metric-card {
+  min-height: 120px;
+}
+
+.helper-text {
+  margin: 0 0 10px 0;
+  color: #4b5563;
+}
+
+.small-text {
+  font-size: 13px;
+}
+
+textarea,
+input,
+select {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 12px;
+  font: inherit;
+  margin-top: 8px;
+  background: white;
+}
+
+button {
+  border: none;
+  border-radius: 14px;
+  padding: 12px 20px;
+  font: inherit;
+  cursor: pointer;
+  background: #111827;
+  color: white;
+  min-width: 140px;
+  height: 48px;
+  align-self: end;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.danger-button {
+  background: #dc2626;
+  color: white;
+}
+
+.small-button {
+  min-width: 72px;
+  height: 36px;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  margin-top: 12px;
+}
+
+.number-field {
+  width: 180px;
+}
+
+.number-field span {
+  display: block;
+}
+
+.metrics-grid,
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.training-metrics-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.charts-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.metric-title {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.status-value {
+  font-size: 24px;
+}
+
+.metric-subtext {
+  color: #4b5563;
+  margin-top: 6px;
+}
+
+.notice ul {
+  margin: 8px 0 0 18px;
+}
+
+.notice.success {
+  border-left: 5px solid #22c55e;
+}
+
+.notice.warning {
+  border-left: 5px solid #f59e0b;
+}
+
+.notice.error {
+  border-left: 5px solid #ef4444;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.multiline-cell {
+  white-space: pre-wrap;
+  min-width: 320px;
+}
+
+.chart-panel h3,
+.panel h2,
+.panel h3 {
+  margin-top: 0;
+}
+
+.empty-state p {
+  margin-bottom: 0;
+  color: #4b5563;
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+
+.loading-card {
+  width: min(420px, calc(100vw - 40px));
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 16px 48px rgba(17, 24, 39, 0.18);
+  text-align: center;
+}
+
+.loading-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.loading-subtext {
+  margin-top: 8px;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  border-radius: 999px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #111827;
+  animation: spin 1s linear infinite;
+}
+
+.truncate {
+  word-break: break-all;
+}
+
+.training-page .training-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.toolbar-actions,
+.form-actions-row,
+.row-actions,
+.pagination-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.compact-actions {
+  justify-content: flex-end;
+}
+
+.training-layout {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 16px;
+}
+
+.field-grid,
+.filters-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .training-layout,
+  .field-grid,
+  .filters-grid,
+  .metrics-grid,
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-header {
+    flex-direction: column;
+  }
+
+  .health-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .training-page .training-toolbar,
+  .table-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

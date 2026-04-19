@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: audit-action-recommender-backend
+    environment:
+      APP_NAME: ${APP_NAME:-Audit Action Recommender API}
+      APP_VERSION: ${APP_VERSION:-2.1.0}
+      API_PREFIX: ${API_PREFIX:-/api/v1}
+      ARTIFACT_DIR: /app/artifacts
+      DATASET_PATH: /app/data/${DATASET_FILENAME:-audit_cases.csv}
+      MODEL_NAME: ${MODEL_NAME:-sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}
+      AUTO_BUILD_ARTIFACTS: ${AUTO_BUILD_ARTIFACTS:-1}
+      FORCE_REBUILD_ARTIFACTS: ${FORCE_REBUILD_ARTIFACTS:-0}
+      UVICORN_WORKERS: ${UVICORN_WORKERS:-1}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:14556,http://127.0.0.1:14556,http://YOUR_DOMAIN:14556}
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - hf_cache:/root/.cache/huggingface
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api/v1}
+    container_name: audit-action-recommender-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-14556}:80"
+    restart: unless-stopped
+
+volumes:
+  hf_cache:
